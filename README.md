@@ -1,4 +1,3 @@
-```md
 # 🚗 **Ride Booking Console App**
 
 ## 📌 **Overview**
