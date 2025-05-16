@@ -11,6 +11,7 @@ The application is built using separate **entity classes (`User` & `Ride`)** for
 - **`User.java`** → Represents users (username, password, role).
 - **`Ride.java`** → Represents ride details (mode, location, distance, booking date).
 - **`RideRepository.java`** → Stores all booked rides & maintains sorting order.
+- **`UserRepository.java`** → Stores all user data & maintains sorting order.
 - **`RideService.java`** → Handles ride operations (booking, viewing history).
 - **`UserService.java`** → Manages user authentication & account creation.
 - **`Main.java`** → Entry point for the application.
