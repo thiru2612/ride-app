@@ -1,10 +1,15 @@
 package com.ride.main;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
 
 import com.ride.entity.User;
 import com.ride.service.RideService;
+import com.ride.service.ShowRide;
 import com.ride.service.UserService;
+import com.ride.service.preBookService;
+import com.ride.service.reviewService;
+import com.ride.service.transactionService;
 
 public class Main {
 
@@ -16,12 +21,11 @@ public class Main {
 		while (true) {
 			System.out.println("Welcome to the ridy app");
 			System.out.println("Please login to continue");
-			System.out.println("Exisiting user(y/n)");
+			System.out.println("New user(y/n)");
 			String euser=sc.next().toLowerCase();
 			
 			if(euser.equals("y")) {
 				main.createUser();
-//				System.out.println("hello new user");
 			}
 			else {
 				System.out.println("Enter your username:");
@@ -42,7 +46,7 @@ public class Main {
 					main.initUser(user);
 				}
 				else{
-					System.out.println("\nLogin failed\nNavigating to login page");
+					System.out.println("\nLogin failed.\nPlease Try again");
 				}
 			}
 		}
@@ -71,6 +75,65 @@ public class Main {
 			}
 		}
 	}
+	private void initUser(User u){
+		boolean flag=true;
+		while (flag) {
+			System.out.println("\n1.Book a ride");
+			System.out.println("2.View Ride history");
+			System.out.println("3.Prebook Section");
+			System.out.println("4.Transaction history");
+			System.out.println("5.Exit");
+			System.out.println("Enter your choice:");
+			int choice=sc.nextInt();
+			switch(choice){
+			case 1:
+				bookRide(u,null);
+				break;
+			case 2:
+				viewRide(u);
+				break;
+			case 3:
+				preBook(u);
+				break;
+			case 4:
+				transactionService.viewT(u);
+				break;
+			case 5:
+				System.out.println("Exiting...");
+				flag=false;
+				break;
+			default:
+				System.out.println("Invalid choice");
+			}
+		}
+	}
+	public void preBook(User u) {
+		preBookService ps=new preBookService();
+		boolean flag=true;
+		while(flag) {
+			
+			System.out.println("Enter your choice:\n1.Preebook a ride\n2.view my prebooking\n3.Cancel prebooking\n4.Go back to menu");
+			int choice=sc.nextInt();
+			switch(choice){
+			case 1:
+				ps.preBookRide(u);
+				break;
+			case 2:
+				ps.viewPreBook(u);
+				break;
+			case 3:
+				ps.cancelRide(u);
+				break;
+			case 4:
+				System.out.println("Exiting...");
+				flag=false;
+				break;
+			default:
+				System.out.println("Invalid choice");
+			}
+		}
+		return;
+	}
 
 	private void createUser(){
 		System.out.println("Creating a user account");
@@ -78,10 +141,10 @@ public class Main {
 		String username=sc.next();
 		System.out.println("Enter password:");
 		String password=sc.next();
-		System.out.println("Enter your age:");
-		int age=sc.nextInt();
 		System.out.println("Enter contact number:");
 		String contactNumber=sc.next();
+		System.out.println("Enter your age:");
+		int age=sc.nextInt();
 		if(us.createUser(username, password, contactNumber,age)){
 			System.out.println("User account created successfully");
 		}
@@ -90,34 +153,7 @@ public class Main {
 		}
 	}
 	static List<String>l;
-	private void initUser(User u){
-		boolean flag=true;
-		while (flag) {
-			
-			System.out.println("1.Book a ride");
-			System.out.println("2.View Ride history");
-			System.out.println("3.Exit");
-			System.out.println("Enter your choice:");
-			int choice=sc.nextInt();
-//			sc.next();
-			switch(choice){
-				case 1:
-					bookRide(u);
-					break;
-				case 2:
-					viewRide(u);
-					break;
-				case 3:
-					System.out.println("Exiting...");
-					flag=false;
-					break;
-				default:
-				System.out.println("Invalid choice");
-			}
-		}
-	}
-
-	public void bookRide(User u) {
+	public void bookRide(User u,Timestamp t) {
 		System.out.println("\nEnter mode of travel:\n1.Bike\n2.Auto\n3.Car");
 		  sc.nextLine();
 		String choice=sc.nextLine();
@@ -147,20 +183,25 @@ public class Main {
 			return;
 			
 		}
-
+		System.out.println("We provide service in the below location:");
+		ShowRide.showServiceArea();
 		System.out.println("Enter pickup location:");
-		String location=sc.nextLine();
-		System.out.println("Enter distance:");
-		Double dis=sc.nextDouble();
+		int plocation=sc.nextInt();
+		System.out.println("Enter destination location:");
+		int dlocation=sc.nextInt();
+		if((plocation<0||plocation>11)||(dlocation<0||dlocation>11)||(dlocation==plocation)) {
+			System.out.println("Invalid choice");
+			return;
+		}
+		reviewService res=rs.bookRide(mode, plocation,dlocation,price, u,t);
 		
-		String s=rs.bookRide(mode, location, dis,price, u);
 		
-		if(s==null) {
+		
+		if(res==null) {
 			System.out.println("booking process failed..");
 		}
 		else {
-			System.out.println("Booking successful\nGenerating invoice...");
-			System.out.println(s);
+			reviewService.addReview(res.getrId(), res.getuId(),res.gettId());
 		}
 	}
 	
@@ -168,7 +209,7 @@ public class Main {
 		System.out.println("Showing your ride history");
 		
 		l=rs.viewRide(u);
-		if(l==null) {
+		if(l==null||l.isEmpty()) {
 			System.out.println("You have not booked a ride yet...\n");
 			return;
 		}

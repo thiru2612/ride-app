@@ -6,6 +6,13 @@ public class User {
 	private String username;
 	private int age;
 	private String role;
+	private String usage;
+	public String getUsage() {
+		return usage;
+	}
+	public void setUsage(String usage) {
+		this.usage = usage;
+	}
 	public int getAge() {
 		return age;
 	}
@@ -19,12 +26,13 @@ public class User {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public User(String username,String role,int age,int id) {
+	public User(String username,String role,int age,int id,String usage ) {
 		super();
 		this.username = username;
 		this.role = role;
 		this.age=age;
 		this.id=id;
+		this.usage=usage;
 	}
 	public String getUsername() {
 		return username;
