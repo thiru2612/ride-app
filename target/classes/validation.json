@@ -1,0 +1,67 @@
+{
+    "RegisterUser": {
+        "username": ["string", 255, 1],
+        "password": ["string", 100, 1],
+        "contact": ["string", 15, 1],
+        "age": ["integer", 3, 1]
+    },
+    "LoginUser": {
+        "username": ["string", 255, 1],
+        "password": ["string", 100, 1]
+    },
+	"getRidebyMode": {
+	    "userId": ["integer", 10, 1],
+	    "mode": ["string", 20, 1]
+	},
+	"getRidebyStatus":{
+		"userId":["integer",10,1],
+		"status":["string",20,1]
+	},
+	"getRidebyDate":{
+		"userId":["integer",10,1],
+		"date":["string",20,1]
+	},
+	"getRidebyStatusDate":{
+		"userId":["integer",10,1],
+		"status":["string",20,1],
+		"date":["string",20,1]
+	},
+	"getRideHistory":{
+		"userId":["integer",10,1]
+	},
+	"getTransactionbyMode": {
+	    "userId": ["integer", 10, 1],
+	    "mode": ["string", 20, 1]
+	},
+	"getTransactionbyStatus":{
+		"userId":["integer",10,1],
+		"status":["string",20,1]
+	},
+	"getTransactionbyDate":{
+		"userId":["integer",10,1],
+		"date":["string",20,1]
+	},
+	"getTransactionbyStatusDate":{
+		"userId":["integer",10,1],
+		"status":["string",20,1],
+		"date":["string",20,1]
+	},
+	"getTransactionHistory":{
+		"userId":["integer",10,1]
+	},
+	
+	"getRouteHistory":{
+		"routeId":["integer",10,1]
+	},
+	"getRoutebyMode": {
+	    "routeId": ["integer", 10, 1],
+	    "mode": ["string", 20, 1]
+	},
+	"deleteUser": {
+	    "userId": ["integer", 10, 1]
+	},
+	"cancelRide": {
+	    "userId": ["integer", 10, 1],
+		"date":["string",30,1]
+	}
+}

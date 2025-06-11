@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+    <servlet>
+        <servlet-name>RegisterUserServlet</servlet-name>
+        <servlet-class>com.rideapp.api.route.RegisterUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterUserServlet</servlet-name>
+        <url-pattern>/user/registerUser</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.rideapp.api.route.LoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/user/login</url-pattern>
+</servlet-mapping>
+
+	<servlet>
+        <servlet-name>RideHistoryServlet</servlet-name>
+        <servlet-class>com.rideapp.api.route.ride.RideHistoryServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RideHistoryServlet</servlet-name>
+        <url-pattern>/user/getRideHistory</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+        <servlet-name>RideByStatusDate</servlet-name>
+        <servlet-class>com.rideapp.api.route.ride.RideByStatusDate</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RideByStatusDate</servlet-name>
+        <url-pattern>/user/getRideStatusDate</url-pattern>
+    </servlet-mapping>
+	<servlet>
+        <servlet-name>RideByStatus</servlet-name>
+        <servlet-class>com.rideapp.api.route.ride.RideByStatus</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RideByStatus</servlet-name>
+        <url-pattern>/user/getRideStatus</url-pattern>
+    </servlet-mapping>
+	<servlet>
+        <servlet-name>RideByDate</servlet-name>
+        <servlet-class>com.rideapp.api.route.ride.RideByDate</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RideByDate</servlet-name>
+        <url-pattern>/user/getRideDate</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+        <servlet-name>RideByMode</servlet-name>
+        <servlet-class>com.rideapp.api.route.ride.RideByMode</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RideByMode</servlet-name>
+        <url-pattern>/user/getRideMode</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+        <servlet-name>TransactionHistoryServlet</servlet-name>
+        <servlet-class>com.rideapp.api.route.transaction.TransactionHistoryServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionHistoryServlet</servlet-name>
+        <url-pattern>/user/getTransactionHistory</url-pattern>
+    </servlet-mapping>
+    
+    
+	<servlet>
+        <servlet-name>TransactionByStatusDate</servlet-name>
+        <servlet-class>com.rideapp.api.route.transaction.TransactionByStatusDate</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionByStatusDate</servlet-name>
+        <url-pattern>/user/getTransactionStatusDate</url-pattern>
+    </servlet-mapping>
+	<servlet>
+        <servlet-name>TransactionByStatus</servlet-name>
+        <servlet-class>com.rideapp.api.route.transaction.TransactionByStatus</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionByStatus</servlet-name>
+        <url-pattern>/user/getTransactionStatus</url-pattern>
+    </servlet-mapping>
+	<servlet>
+        <servlet-name>TransactionByDate</servlet-name>
+        <servlet-class>com.rideapp.api.route.transaction.TransactionByDate</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionByDate</servlet-name>
+        <url-pattern>/user/getTransactionDate</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+        <servlet-name>TransactionByMode</servlet-name>
+        <servlet-class>com.rideapp.api.route.transaction.TransactionByMode</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TransactionByMode</servlet-name>
+        <url-pattern>/user/getTransactionMode</url-pattern>
+    </servlet-mapping>
+    
+    
+	<servlet>
+        <servlet-name>RouteById</servlet-name>
+        <servlet-class>com.rideapp.api.route.Rroute.RouteById</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RouteById</servlet-name>
+        <url-pattern>/admin/getRouteHistory</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+        <servlet-name>RouteByMode</servlet-name>
+        <servlet-class>com.rideapp.api.route.Rroute.RouteByMode</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RouteByMode</servlet-name>
+        <url-pattern>/admin/getRouteMode</url-pattern>
+    </servlet-mapping>
+    
+    
+	<servlet>
+        <servlet-name>BookRideServlet</servlet-name>
+        <servlet-class>com.rideapp.api.route.BookRideServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BookRideServlet</servlet-name>
+        <url-pattern>/user/bookRide</url-pattern>
+    </servlet-mapping>
+    
+	<servlet>
+        <servlet-name>CancelRide</servlet-name>
+        <servlet-class>com.rideapp.api.route.CancelRide</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CancelRide</servlet-name>
+        <url-pattern>/user/CancelRide</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <servlet-class>com.rideapp.api.route.DeleteUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteUserServlet</servlet-name>
+        <url-pattern>/user/delUser</url-pattern>
+    </servlet-mapping>
+
+</web-app>

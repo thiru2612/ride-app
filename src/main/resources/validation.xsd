@@ -1,0 +1,384 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Request">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="RegisterUser"/>
+                <xs:element ref="LoginUser"/>
+                <xs:element ref="getRidebyMode"/>
+                <xs:element ref="getRidebyStatus"/>
+                <xs:element ref="getRidebyDate"/>                <xs:element ref="getRidebyStatusDate"/>
+                <xs:element ref="getRideHistory"/>
+                <xs:element ref="getTransactionbyMode"/>
+                <xs:element ref="getTransactionbyStatus"/>
+                <xs:element ref="getTransactionbyDate"/>
+                <xs:element ref="getTransactionbyStatusDate"/>
+                <xs:element ref="getTransactionHistory"/>
+                <xs:element ref="getRouteHistory"/>
+                <xs:element ref="getRoutebyMode"/>
+                <xs:element ref="deleteUser"/>
+                <xs:element ref="cancelRide"/>
+                <xs:element ref="BookRide"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 RegisterUser -->
+    <xs:element name="RegisterUser">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="password">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="100"/>
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="contact">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="15"/>
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="age">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="150"/>
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 LoginUser -->
+    <xs:element name="LoginUser">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 getRideHistory -->
+    <xs:element name="getRideHistory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="999999999"/>
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 🔹 getRidebyMode -->
+    <xs:element name="getRidebyMode">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="999999999"/>
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="mode">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- 🔹 getRidebyDate -->
+    <xs:element name="getRidebyDate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="999999999"/>
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="date">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 getRidebyStatus -->
+    <xs:element name="getRidebyStatus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int"/>
+                <xs:element name="status">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <!-- getRidebyStatusDate -->
+    <xs:element name="getRidebyStatusDate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int" minOccurs="1"/>
+                <xs:element name="status" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="date" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 deleteUser -->
+    <xs:element name="deleteUser">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- 🔹 cancelRide -->
+    <xs:element name="cancelRide">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int"/>
+                <xs:element name="date">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getTransactionbyMode -->
+    <xs:element name="getTransactionbyMode">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="999999999"/>
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="mode">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getTransactionbyStatusDate -->
+    <xs:element name="getTransactionbyStatusDate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int" minOccurs="1"/>
+                <xs:element name="status" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="date" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getTransactionbyStatus -->
+    <xs:element name="getTransactionbyStatus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int" minOccurs="1"/>
+                <xs:element name="status" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- getTransactionbyDate -->
+    <xs:element name="getTransactionbyDate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int" minOccurs="1"/>
+                <xs:element name="date" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getTransactionHistory -->
+    <xs:element name="getTransactionHistory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId" type="xs:int" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getRoutebyMode -->
+    <xs:element name="getRoutebyMode">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="routeId" type="xs:int" minOccurs="1"/>
+                <xs:element name="mode" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- getRouteHistory -->
+    <xs:element name="getRouteHistory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="routeId" type="xs:int" minOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <!-- BookaRide -->
+    <xs:element name="BookRide">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userId">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/> <!-- Required -->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="mode">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="pickup">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/> <!-- Required -->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="drop">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/> <!-- Required -->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="paymode" minOccurs="0"> <!-- Nullable -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="rating">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="0"/> <!-- Required -->
+                            <xs:maxInclusive value="10"/> <!-- Rating scale 0-5 -->
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="tStatus" minOccurs="1"> <!-- Nullable -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="review" minOccurs="0"> <!-- Nullable -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="255"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="date" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="25"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
